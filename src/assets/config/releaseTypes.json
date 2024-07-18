@@ -1,0 +1,34 @@
+{
+  "types": [
+    {
+      "id": "ea5ff669-89c0-4a00-b120-8a012bf125d1",
+      "title": "Theatrical (limited)",
+      "api": 1
+    },
+    {
+      "id": "04124fbb-9d0b-4b76-9d10-edb1ce892fe7",
+      "title": "Theatrical",
+      "api": 2
+    },
+    {
+      "id": "7a894763-f085-4b07-b33b-f6c035cc9ade",
+      "title": "Premiere",
+      "api": 3
+    },
+    {
+      "id": "d7e76aa4-0ed5-42dd-ac31-cc4394db4d45",
+      "title": "Digital",
+      "api": 4
+    },
+    {
+      "id": "a443a248-9d88-4796-9132-30047ba46aea",
+      "title": "Physical",
+      "api": 5
+    },
+    {
+      "id": "f474c978-1f00-426c-b475-854ef367e545",
+      "title": "TV",
+      "api": 6
+    }
+  ]
+}

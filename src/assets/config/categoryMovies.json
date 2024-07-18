@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "id": "a9adb758-7ba8-44e6-b1de-985d80a72cc6",
+      "title": "Now Playing",
+      "api": 0,
+      "description": "Movies that are currently playing in theaters"
+    },
+    {
+      "id": "7ad18dcc-9829-49d6-8ca1-c584cae881a1",
+      "title": "Popular",
+      "api": 1,
+      "description": "Movies that are popular"
+    },
+    {
+      "id": "8df98e48-bc23-42d9-80e0-25cfbc04eccb",
+      "title": "Top rated",
+      "api": 2,
+      "description": "Movies that are top rated"
+    },
+    {
+      "id": "ff7a982d-cd9b-4cd3-85e1-f0923edbceba",
+      "title": "Upcoming",
+      "api": 3,
+      "description": "Movies that are upcoming"
+    }
+  ]
+}

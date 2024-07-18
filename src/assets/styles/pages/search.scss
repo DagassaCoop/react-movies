@@ -1,0 +1,42 @@
+@import '../constants.scss';
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__title {
+    width: 100%;
+    font-size: 26px;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 25px 0 20px;
+  }
+
+  &__filter {
+    width: 23%;
+    margin-right: 2%;
+  }
+
+  &__content {
+    width: 75%;
+  }
+
+  &__btn {
+    width: 100%;
+    background-color: $lightBlue;
+    border-radius: 24px;
+    border: none;
+    padding: 10px 0;
+    font-size: 18px;
+    font-weight: 500;
+
+    &:hover {
+      background-color: $darkBlue;
+    }
+
+    &:disabled {
+      background-color: rgba(228, 228, 228, 0.7);
+      color: rgba(0,0,0,0.7);
+    }
+  }
+}

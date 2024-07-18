@@ -1,0 +1,12 @@
+@import '../../constants.scss';
+
+.footer {
+    height: $footer-height;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+}

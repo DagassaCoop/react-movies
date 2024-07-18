@@ -1,0 +1,10 @@
+@import '../constants.scss';
+
+.root-layout {
+    width: 100wv;
+
+    &__content {
+        margin-top: calc($header-height + 10px);
+        min-height: calc(100vh - $header-height - $footer-height);
+    }
+}

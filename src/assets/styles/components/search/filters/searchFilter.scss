@@ -1,0 +1,35 @@
+@import '../../../constants.scss';
+
+.search-filter {
+  &__title {
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-weight: 300;
+  }
+
+  &__btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 12px;
+    border: 1px solid #9e9e9e;
+    border-radius: 14px;
+    font-size: 13px;
+    margin-top: 8px;
+    margin-right: 6px;
+
+    &:hover, &.active {
+      background-color: $lightBlue;
+      color: #FFFFFF;
+    }
+
+
+    &-list {
+      display: flex;
+      justify-content: flex-start;
+      align-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+}
