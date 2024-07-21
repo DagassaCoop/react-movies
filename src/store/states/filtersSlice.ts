@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, createAsyncThunk, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 
 // API
@@ -66,6 +66,17 @@ const initialState: IFiltersStore = {
           title: 'All countries',
         },
       },
+      country: {
+        id: v4(),
+        section: EFilterSection.releaseDate,
+        type: EFilterType.country,
+        isActive: false,
+        data: {
+          english_name: '',
+          iso_3166_1: '',
+          native_name: '',
+        },
+      },
       releaseDateTypes: [],
       releaseFrom: {
         id: v4(),
@@ -76,6 +87,7 @@ const initialState: IFiltersStore = {
           id: v4(),
           title: 'from',
           date: '',
+          api: 0
         },
       },
       releaseTo: {
@@ -87,6 +99,7 @@ const initialState: IFiltersStore = {
           id: v4(),
           title: 'to',
           date: '',
+          api: 1
         },
       },
     },

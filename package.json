@@ -13,11 +13,16 @@
     "format": "npm run prettier:fix && npm run lint:fix"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@mui/material": "^5.16.4",
+    "@mui/x-date-pickers": "^7.11.0",
     "@reduxjs/toolkit": "^2.2.5",
     "@tanstack/react-query": "^5.51.1",
     "@types/react-redux": "^7.1.33",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
+    "dayjs": "^1.11.12",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.3",
     "react-bootstrap-icons": "^1.11.4",
@@ -30,7 +35,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.4",
-    "@types/react": "^18.0.37",
+    "@types/react": "^18.3.3",
     "@types/react-dom": "^18.0.11",
     "@types/react-router-bootstrap": "^0.26.6",
     "@types/uuid": "^10.0.0",

@@ -33,7 +33,7 @@ export function createReleaseDateTypesFilters(
       id: v4(),
       section: EFilterSection.releaseDate,
       type: EFilterType.releaseDateType,
-      isActive: false,
+      isActive: true,
       data: {
         id: type.id,
         title: type.title,

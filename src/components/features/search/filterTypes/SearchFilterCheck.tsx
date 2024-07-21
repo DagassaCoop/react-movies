@@ -34,13 +34,14 @@ const SearchFilterCheck: React.FC<ISearchFilterCheckProps> = ({ filterData, setS
   }, []);
 
   return (
-    <RBS.Form.Check>
+    <RBS.Form.Check className='search-filter__check'>
       <RBS.Form.Check.Input
         type='checkbox'
         defaultChecked={filterData.isActive}
         onChange={onChangeHandler}
+        className='search-filter__check-input'
       />
-      <RBS.Form.Check.Label>{filterData.data.title}</RBS.Form.Check.Label>
+      <RBS.Form.Check.Label className='search-filter__check-label'>{filterData.data.title}</RBS.Form.Check.Label>
     </RBS.Form.Check>
   );
 };

@@ -13,6 +13,11 @@ export enum EFilterType {
   minInfo,
 }
 
+export enum EReleaseDateAPIType {
+  gte,
+  lte,
+}
+
 // API
 
 export interface IGenreAPI {
@@ -38,6 +43,7 @@ export interface IReleaseDate {
   id: string;
   title: string;
   date: string;
+  api: EReleaseDateAPIType
 }
 
 export interface IMinInfo {
@@ -66,7 +72,7 @@ export interface IFiltersViewStructure {
   [EFilterSection.releaseDate]: {
     allReleases: IFilter<IMinInfo>;
     allCountries: IFilter<IMinInfo>;
-    country?: IFilter<ICountryAPI>;
+    country: IFilter<ICountryAPI>;
     releaseDateTypes: Array<IFilter<IReleaseDateTypeAPI>>;
     releaseFrom: IFilter<IReleaseDate>;
     releaseTo: IFilter<IReleaseDate>;

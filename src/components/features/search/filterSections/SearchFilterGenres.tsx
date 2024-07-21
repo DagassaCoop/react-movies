@@ -6,7 +6,7 @@ import { fetchGenres } from '@/store/states/filtersSlice';
 import '@/assets/styles/components/search/filters/searchFilter.scss';
 
 // Components
-import SearchFilterButton from './SearchFilterButton';
+import SearchFilterButton from '../filterTypes/SearchFilterButton';
 import { EFilterSection } from '@/interfaces/filters';
 
 const SearchFilterGenres: React.FC = () => {

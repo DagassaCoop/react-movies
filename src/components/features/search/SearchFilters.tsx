@@ -7,8 +7,8 @@ import { setReadyStatus } from '@/store/states/filtersSlice';
 import '@/assets/styles/components/search/searchFilters.scss';
 
 // Components
-import SearchFilterGenres from './filters/SearchFilterGenres';
-import SearchFilterReleaseDate from './filters/SearchFilterReleaseDate';
+import SearchFilterGenres from './filterSections/SearchFilterGenres';
+import SearchFilterReleaseDate from './filterSections/SearchFilterReleaseDate';
 
 const SearchFilters: React.FC = () => {
   const dispatch = useAppDispatch();

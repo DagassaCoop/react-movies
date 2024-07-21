@@ -1,4 +1,4 @@
-import { IFiltersViewStructure, IGenreAPI } from '@/interfaces/filters';
+import { ICountryAPI, IFiltersViewStructure, IGenreAPI } from '@/interfaces/filters';
 import { EMoviesListName, IMovie, IMovies } from '@/interfaces/movies';
 import { buildDiscoverQueryByFilters } from '@/services/tmdbService';
 import axios from 'axios';
@@ -9,19 +9,6 @@ const tmdbApi = axios.create({
     api_key: import.meta.env.VITE_TMDB_API_KEY,
   },
 });
-
-// CONTROLLERS
-
-// export const getMovies = async (
-//   listName: EMoviesListName,
-//   filters?: IFiltersState,
-// ): Promise<IMovies> => {
-//   if (filters) {
-//     return await getDiscoverMovies(filters);
-//   } else {
-//     return await getMoviesByListName(listName);
-//   }
-// };
 
 // MOVIES API
 
@@ -50,3 +37,10 @@ export const getDiscoverMovies = async (filters: IFiltersViewStructure): Promise
   const response = await tmdbApi.get(query);
   return response.data;
 };
+
+// CONFIGURATION API
+
+export const getCountries = async (): Promise<ICountryAPI[]> => {
+  const response = await tmdbApi.get('configuration/countries');
+  return response.data;
+}
