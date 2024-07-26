@@ -2,7 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 
 // API
-import { getLanguages, getMovieGenres } from '@/api/tmbd';
+import { getMovieGenres } from '@/api/tmbd.api';
 
 // Interfaces
 import {
@@ -11,7 +11,7 @@ import {
   IFiltersViewStructure,
   IFiltersUpdates,
   TFilter,
-} from '@/interfaces/filters';
+} from '@/interfaces/filters.interface';
 
 // Services
 import {
@@ -19,7 +19,7 @@ import {
   createGenresFilters,
   createReleaseDateTypesFilters,
   getExistFilterById,
-} from '@/services/filtersService';
+} from '@/services/filters.service';
 
 // Assets
 import releaseDates from '@/assets/config/releaseTypes.json';
@@ -140,7 +140,7 @@ const initialState: IFiltersStore = {
   readyForUpdate: false,
 };
 
-const filtersSlice = createSlice({
+const filters = createSlice({
   name: 'filters',
   initialState,
   // Actions
@@ -191,6 +191,6 @@ const filtersSlice = createSlice({
 });
 
 export const { setReadyStatus, setFilterUpdate, removeFilterUpdates, updateFiltersViewStructure } =
-  filtersSlice.actions;
+  filters.actions;
 
-export default filtersSlice.reducer;
+export default filters.reducer;

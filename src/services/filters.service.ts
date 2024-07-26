@@ -6,7 +6,7 @@ import {
   IFilter,
   TFilter,
   IReleaseDateTypeAPI,
-} from '@/interfaces/filters';
+} from '@/interfaces/filters.interface';
 import { v4 } from 'uuid';
 
 export function createGenresFilters(apiGenres: Array<IGenreAPI>): Array<IFilter<IGenreAPI>> {

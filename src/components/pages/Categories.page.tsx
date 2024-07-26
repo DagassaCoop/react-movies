@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 // Hooks
-import { useAppSelector } from '@/hooks/store';
+import { useAppSelector } from '@/hooks/store.hook';
 
 // Interfaces
 import {
@@ -11,13 +11,13 @@ import {
   ECategoryTVSerieType,
   ICategoriesLoaderDataOutput,
   ICategoriesLoaderOutput,
-} from '@/interfaces/categories';
+} from '@/interfaces/categories.interface';
 
 // Components
 import CategoriesHeader from '../features/categories/CategoriesHeader';
 import CategoriesMovies from '../features/categories/CategoriesMovies';
 
-const CategoriesPage: React.FC = () => {
+const Categories: React.FC = () => {
   const redirectFrom = useAppSelector((state) => state.categories.redirectFrom);
 
   let loaderData = useLoaderData() as ICategoriesLoaderOutput;
@@ -72,4 +72,4 @@ const CategoriesPage: React.FC = () => {
   );
 };
 
-export default CategoriesPage;
+export default Categories;

@@ -5,10 +5,10 @@ import { ThreeDots, ListUl, HeartFill, BookmarkFill, StarFill } from 'react-boot
 import { LinkContainer } from 'react-router-bootstrap';
 
 // Hooks
-import useOutsideCallback from '@/hooks/useOutsideCallback';
+import useOutsideCallback from '@/hooks/useOutsideCallback.hook';
 
 // Interfaces
-import { IMovie } from '@/interfaces/movies';
+import { IMovie } from '@/interfaces/movies.interface';
 
 interface ISearchResultItemProps {
   movie: IMovie;

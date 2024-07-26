@@ -8,7 +8,7 @@ const initialState: ICategoriesState = {
   redirectFrom: null,
 };
 
-export const categoriesSlice = createSlice({
+export const categories = createSlice({
   name: 'categories',
   initialState,
   reducers: {
@@ -18,6 +18,6 @@ export const categoriesSlice = createSlice({
   },
 });
 
-export const { setRedirectFrom } = categoriesSlice.actions;
+export const { setRedirectFrom } = categories.actions;
 
-export default categoriesSlice.reducer;
+export default categories.reducer;

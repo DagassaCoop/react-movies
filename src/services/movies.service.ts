@@ -1,4 +1,4 @@
-import { EMoviesListName } from '@/interfaces/movies';
+import { EMoviesListName } from '@/interfaces/movies.interface';
 
 export function getMoviesListEnums(): Array<EMoviesListName> {
   const names = Object.keys(EMoviesListName);

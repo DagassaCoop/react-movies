@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store.hook';
 
 // State
-import { addFavoriteMovie, removeFavoriteMovie } from '@/store/states/favoritesSlice';
+import { addFavoriteMovie, removeFavoriteMovie } from '@/store/states/favorites.slice';
 
 const MoviesListItem: React.FC<{ movie: any }> = ({ movie }) => {
   const isFavor = Boolean(

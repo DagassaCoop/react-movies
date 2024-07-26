@@ -3,9 +3,9 @@ import {
   ECategoryMovieType,
   ECategoryTVSerieType,
   ICategoriesLoaderOutput,
-} from '@/interfaces/categories';
+} from '@/interfaces/categories.interface';
 import store from '@/store/store';
-import { setRedirectFrom } from '@/store/states/categoriesSlice';
+import { setRedirectFrom } from '@/store/states/categories.slice';
 
 const categoryLoader = async ({ params }: any): Promise<ICategoriesLoaderOutput> => {
   switch (params.categoryType) {

@@ -2,11 +2,11 @@ import axios from 'axios';
 import { DefinedInitialDataOptions, UseQueryResult, useQuery } from '@tanstack/react-query';
 
 // API
-import { getMoviesByListName, getDiscoverMovies } from '@/api/tmbd';
+import { getMoviesByListName, getDiscoverMovies } from '@/api/tmbd.api';
 
 // Interfaces
-import { IFiltersViewStructure } from '@/interfaces/filters';
-import { EMoviesListName, IMovies } from '@/interfaces/movies';
+import { IFiltersViewStructure } from '@/interfaces/filters.interface';
+import { EMoviesListName, IMovies } from '@/interfaces/movies.interface';
 
 import { queryClient } from '@/main';
 

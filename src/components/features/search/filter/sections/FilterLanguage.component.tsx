@@ -3,18 +3,18 @@ import * as RBS from 'react-bootstrap';
 import { useQuery } from '@tanstack/react-query';
 
 // Interfaces
-import { EFilterSection, IFilter, ILanguageAPI } from '@/interfaces/filters';
+import { EFilterSection, IFilter, ILanguageAPI } from '@/interfaces/filters.interface';
 
 // API
-import { getLanguages } from '@/api/tmbd';
+import { getLanguages } from '@/api/tmbd.api';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store.hook';
 
 // State
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
-const SearchFilterLanguage: React.FC = () => {
+const FilterLanguage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const stateLanguage = useAppSelector(
@@ -70,4 +70,4 @@ const SearchFilterLanguage: React.FC = () => {
   );
 };
 
-export default memo(SearchFilterLanguage);
+export default memo(FilterLanguage);

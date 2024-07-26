@@ -12,7 +12,7 @@ import {
   ISlider,
   ISliderDouble,
   TFilter,
-} from '@/interfaces/filters';
+} from '@/interfaces/filters.interface';
 
 // TODO: Move builders to personalized function for each filter section
 export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): string => {

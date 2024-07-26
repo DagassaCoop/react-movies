@@ -6,10 +6,10 @@ import { Outlet } from 'react-router-dom';
 import '@/assets/styles/pages/root.scss';
 
 // Components
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
+import Header from '@/components/shared/Header.component';
+import Footer from '@/components/shared/Footer.component';
 
-const RootLayout: React.FC = () => {
+const Root: React.FC = () => {
   return (
     <div className='root-layout'>
       <Header />
@@ -23,4 +23,4 @@ const RootLayout: React.FC = () => {
   );
 };
 
-export default RootLayout;
+export default Root;

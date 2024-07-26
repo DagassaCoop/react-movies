@@ -3,26 +3,23 @@ import * as RBS from 'react-bootstrap';
 import { useQuery } from '@tanstack/react-query';
 
 // Interfaces
-import { ICountryAPI, IFilter } from '@/interfaces/filters';
+import { ICountryAPI, IFilter } from '@/interfaces/filters.interface';
 
 // API
-import { getCountries } from '@/api/tmbd';
+import { getCountries } from '@/api/tmbd.api';
 
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store.hook';
 
 // State
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
-interface ISearchFilterCountryProps {
+interface IFilterCountryProps {
   filterData: IFilter<ICountryAPI>;
   setStateCallback: (data: ICountryAPI, isActive: boolean) => void;
 }
 
-const SearchFilterCountry: React.FC<ISearchFilterCountryProps> = ({
-  filterData,
-  setStateCallback,
-}) => {
+const FilterCountry: React.FC<IFilterCountryProps> = ({ filterData, setStateCallback }) => {
   const dispatch = useAppDispatch();
 
   const { data } = useQuery<ICountryAPI[]>({
@@ -82,4 +79,4 @@ const SearchFilterCountry: React.FC<ISearchFilterCountryProps> = ({
   );
 };
 
-export default memo(SearchFilterCountry);
+export default memo(FilterCountry);

@@ -1,21 +1,21 @@
 import React, { useEffect, memo } from 'react';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store.hook';
 
 // State
-import { fetchGenres } from '@/store/states/filtersSlice';
+import { fetchGenres } from '@/store/states/filters.slice';
 
 // Assets
 import '@/assets/styles/components/search/filters/searchFilter.scss';
 
 // Components
-import SearchFilterButton from '../components/SearchFilterButton';
+import FilterButton from '../components/FilterButton.component';
 
 // Interfaces
-import { EFilterSection } from '@/interfaces/filters';
+import { EFilterSection } from '@/interfaces/filters.interface';
 
-const SearchFilterGenres: React.FC = () => {
+const FilterGenres: React.FC = () => {
   const dispatch = useAppDispatch();
   const genres = useAppSelector(
     (state) => state.filters.filtersViewStructure[EFilterSection.genre],
@@ -30,11 +30,11 @@ const SearchFilterGenres: React.FC = () => {
       <h3 className='search-filter__title'>Genres</h3>
       <div className='search-filter__btn-list'>
         {genres.map((genre) => {
-          return <SearchFilterButton filterData={genre} key={genre.id} />;
+          return <FilterButton filterData={genre} key={genre.id} />;
         })}
       </div>
     </div>
   );
 };
 
-export default memo(SearchFilterGenres);
+export default memo(FilterGenres);

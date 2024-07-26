@@ -1,4 +1,4 @@
-import { IMovies } from './movies';
+import { IMovies } from './movies.interface';
 
 export enum ECategoryDefaultType {
   'Genres',

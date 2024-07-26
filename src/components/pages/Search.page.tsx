@@ -1,34 +1,34 @@
 import React, { memo, useMemo } from 'react';
 import { Button } from 'react-bootstrap';
-import { useAppSelector, useAppDispatch } from '@/hooks/store';
+import { useAppSelector, useAppDispatch } from '@/hooks/store.hook';
 import { useLoaderData } from 'react-router-dom';
 
 // Store
-import { updateFiltersViewStructure } from '@/store/states/filtersSlice';
+import { updateFiltersViewStructure } from '@/store/states/filters.slice';
 
 // Assets
 import '@/assets/styles/pages/search.scss';
 import categoryMovies from '@/assets/config/categoryMovies.json';
 
 // Components
-import SearchFilters from '../features/search/SearchFilters';
-import SearchResult from '../features/search/SearchResult';
+import SearchFilters from '../features/search/SearchFilters.component';
+import SearchResult from '../features/search/SearchResult.component';
 
 // Interfaces
-import { EMoviesListName, IMovies } from '@/interfaces/movies';
+import { EMoviesListName, IMovies } from '@/interfaces/movies.interface';
 
 // Hooks
 import { useMovies } from '@/hooks/tmbd.hook';
-import searchLoader from '@/router/loaders/searchLoader';
+import searchLoader from '@/router/loaders/search.loader';
 
 // Query Client
 import { queryClient } from '@/main';
 
-interface ISearchResultProps {
+interface ISearchProps {
   moviesListName: EMoviesListName;
 }
 
-const SearchPage: React.FC<ISearchResultProps> = ({ moviesListName }) => {
+const Search: React.FC<ISearchProps> = ({ moviesListName }) => {
   const dispatch = useAppDispatch();
 
   const loadedData = useLoaderData() as Awaited<ReturnType<ReturnType<typeof searchLoader>>>;
@@ -80,4 +80,4 @@ const SearchPage: React.FC<ISearchResultProps> = ({ moviesListName }) => {
   );
 };
 
-export default memo(SearchPage);
+export default memo(Search);

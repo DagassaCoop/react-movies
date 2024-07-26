@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 
 // Interfaces
-import { IMovie } from '@/interfaces/movies';
+import { IMovie } from '@/interfaces/movies.interface';
 
 // Components
 import MoviesListItem from './MoviesListItem';

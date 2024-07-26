@@ -1,19 +1,19 @@
 import { useState, useEffect, memo } from 'react';
 
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store.hook';
 
 // State
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
 // Interfaces
-import { IFilter, IGenreAPI } from '@/interfaces/filters';
+import { IFilter, IGenreAPI } from '@/interfaces/filters.interface';
 
-interface ISearchFilterButtonProps {
+interface IFilterButtonProps {
   filterData: IFilter<IGenreAPI>;
 }
 
-const SearchFilterButton: React.FC<ISearchFilterButtonProps> = ({ filterData }) => {
+const FilterButton: React.FC<IFilterButtonProps> = ({ filterData }) => {
   const dispatch = useAppDispatch();
   const [isActive, setIsActive] = useState<boolean>(filterData.isActive);
 
@@ -39,4 +39,4 @@ const SearchFilterButton: React.FC<ISearchFilterButtonProps> = ({ filterData }) 
   );
 };
 
-export default memo(SearchFilterButton);
+export default memo(FilterButton);

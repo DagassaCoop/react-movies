@@ -1,6 +1,7 @@
 import React from 'react';
 import * as RBS from 'react-bootstrap';
 
+// Assets
 import '@/assets/styles/components/shared/footer.scss';
 
 const Footer: React.FC = () => {

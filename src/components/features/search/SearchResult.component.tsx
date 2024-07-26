@@ -4,7 +4,7 @@ import React, { memo } from 'react';
 import '@/assets/styles/components/search/searchResult.scss';
 
 // Interfaces
-import { IMovie } from '@/interfaces/movies';
+import { IMovie } from '@/interfaces/movies.interface';
 
 // Components
 import SearchResultItem from './result/SearchResultItem';

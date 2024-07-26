@@ -2,20 +2,20 @@ import React, { useEffect, memo } from 'react';
 import * as RBS from 'react-bootstrap';
 
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store.hook';
 
 // Interfaces
-import { IFilter, IMinInfo, IReleaseDateTypeAPI } from '@/interfaces/filters';
+import { IFilter, IMinInfo, IReleaseDateTypeAPI } from '@/interfaces/filters.interface';
 
 // State
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
-interface ISearchFilterCheckProps {
+interface IFilterCheckProps {
   filterData: IFilter<IReleaseDateTypeAPI | IMinInfo>;
   setStateCallback?: () => void;
 }
 
-const SearchFilterCheck: React.FC<ISearchFilterCheckProps> = ({ filterData, setStateCallback }) => {
+const FilterCheck: React.FC<IFilterCheckProps> = ({ filterData, setStateCallback }) => {
   const dispatch = useAppDispatch();
 
   const onChangeHandler = () => {
@@ -48,4 +48,4 @@ const SearchFilterCheck: React.FC<ISearchFilterCheckProps> = ({ filterData, setS
   );
 };
 
-export default memo(SearchFilterCheck);
+export default memo(FilterCheck);

@@ -2,20 +2,25 @@ import React, { useEffect, memo, useCallback } from 'react';
 import * as RBS from 'react-bootstrap';
 
 // Components
-import SearchFilterCheck from '../components/SearchFilterCheck';
-import SearchFilterCountry from '../components/SearchFilterCountry';
-import SearchFilterDate from '../components/SearchFilterDate';
+import FilterCheck from '../components/FilterCheck.component';
+import FilterCountry from '../components/FilterCountry.component';
+import SearchFilterDate from '../components/FilterDate.component';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store.hook';
 
 // Interfaces
-import { EFilterType, EReleaseDateAPIType, ICountryAPI, IReleaseDate } from '@/interfaces/filters';
+import {
+  EFilterType,
+  EReleaseDateAPIType,
+  ICountryAPI,
+  IReleaseDate,
+} from '@/interfaces/filters.interface';
 
 // API
-import { fetchReleaseDateTypes, removeFilterUpdates } from '@/store/states/filtersSlice';
+import { fetchReleaseDateTypes, removeFilterUpdates } from '@/store/states/filters.slice';
 
-const SearchFilterReleaseDate: React.FC = () => {
+const FilterReleaseDate: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const filterReleaseDates = useAppSelector(
@@ -107,21 +112,21 @@ const SearchFilterReleaseDate: React.FC = () => {
         <h3 className='search-filter__title'>Release Dates</h3>
         <div className='search-filter__options'>
           {/* Filter > All Releases as MinInfo */}
-          <SearchFilterCheck
+          <FilterCheck
             filterData={releaseDateFilters.allReleases}
             setStateCallback={allReleasesOnChangeHandler}
           />
           {!releaseDateFilters.allReleases.isActive && (
             <>
               {/* Filter: All Countries as MinInfo */}
-              <SearchFilterCheck
+              <FilterCheck
                 filterData={releaseDateFilters.allCountries}
                 setStateCallback={allCountriesOnChangeHandler}
               />
               {/* Filter: Country as ICountryAPI */}
               {!releaseDateFilters.allCountries.isActive && (
                 <div className='search-filter_release-date__country'>
-                  <SearchFilterCountry
+                  <FilterCountry
                     filterData={releaseDateFilters.country}
                     setStateCallback={countryOnChangeHandler}
                   />
@@ -131,7 +136,7 @@ const SearchFilterReleaseDate: React.FC = () => {
               <div className='search-filter_release-date__types'>
                 {releaseDateFilters.releaseDateTypes.map((typeData) => {
                   return (
-                    <SearchFilterCheck
+                    <FilterCheck
                       key={typeData.id}
                       filterData={typeData}
                       setStateCallback={() =>
@@ -177,4 +182,4 @@ const SearchFilterReleaseDate: React.FC = () => {
   );
 };
 
-export default memo(SearchFilterReleaseDate);
+export default memo(FilterReleaseDate);

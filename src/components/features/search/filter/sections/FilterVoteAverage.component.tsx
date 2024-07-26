@@ -2,13 +2,13 @@ import React, { memo } from 'react';
 import Slider from '@mui/material/Slider';
 
 // Hooks
-import { useAppDispatch, useAppSelector } from '@/hooks/store';
+import { useAppDispatch, useAppSelector } from '@/hooks/store.hook';
 
 // State
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
 // Interfaces
-import { EFilterSection, IFilter, ISliderDouble } from '@/interfaces/filters';
+import { EFilterSection, IFilter, ISlider } from '@/interfaces/filters.interface';
 
 const marks = [
   {
@@ -16,39 +16,51 @@ const marks = [
     label: '0',
   },
   {
-    value: 50,
-    label: '5',
+    value: 20,
+    label: '100',
+  },
+  {
+    value: 40,
+    label: '200',
+  },
+  {
+    value: 60,
+    label: '300',
+  },
+  {
+    value: 80,
+    label: '400',
   },
   {
     value: 100,
-    label: '10',
+    label: '500',
   },
 ];
 
-const SearchFilterVoteCount: React.FC = () => {
+const FilterVoteAverage: React.FC = () => {
   const dispatch = useAppDispatch();
   const voteCount = useAppSelector(
-    (state) => state.filters.filtersViewStructure[EFilterSection.voteCount],
+    (state) => state.filters.filtersViewStructure[EFilterSection.voteAverage],
   );
 
-  const [value, setValue] = React.useState<number[]>(voteCount.data.value);
+  const [value, setValue] = React.useState<number>(voteCount.data.value / 5);
 
   const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+    setValue(newValue as number);
   };
 
   const handleChangeCommitted = (
     event: React.SyntheticEvent | Event,
     newValue: number | number[],
   ) => {
-    newValue = newValue as number[];
+    newValue = newValue as number;
 
-    const updatedFilter: IFilter<ISliderDouble> = {
+    const updatedFilter: IFilter<ISlider> = {
       ...voteCount,
-      isActive: newValue[0] === 0 && newValue[1] === 100 ? false : true,
+      isActive: newValue === 0 ? false : true,
       data: {
         ...voteCount.data,
-        value: newValue,
+        value: newValue * 5,
       },
     };
 
@@ -56,12 +68,12 @@ const SearchFilterVoteCount: React.FC = () => {
   };
 
   const valueText = () => {
-    return `Rated ${value[0] / 10} - ${value[1] / 10}`;
+    return value * 5;
   };
 
   return (
-    <div className='search-filter search-filter_vote-count'>
-      <h3 className='search-filter__title'>User Score</h3>
+    <div className='search-filter search-filter_vote-average'>
+      <h3 className='search-filter__title'>Minimum User Votes</h3>
       <div className='search-filter__slider'>
         <Slider
           value={value}
@@ -77,4 +89,4 @@ const SearchFilterVoteCount: React.FC = () => {
   );
 };
 
-export default memo(SearchFilterVoteCount);
+export default memo(FilterVoteAverage);

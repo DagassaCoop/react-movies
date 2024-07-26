@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as RBS from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
+// Assets
 import '@/assets/styles/components/shared/header.scss';
 
 const Header: React.FC = () => {
@@ -19,9 +20,6 @@ const Header: React.FC = () => {
             <LinkContainer to='/tv-series'>
               <RBS.Nav.Link>TV Series</RBS.Nav.Link>
             </LinkContainer>
-            {/* <LinkContainer to='/media'>
-              <RBS.Nav.Link>Media</RBS.Nav.Link>
-            </LinkContainer> */}
           </RBS.Nav>
           <RBS.Nav>
             <LinkContainer to='/my-favorite'>
@@ -34,4 +32,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

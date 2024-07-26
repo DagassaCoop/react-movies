@@ -1,6 +1,11 @@
-import { ICountryAPI, IFiltersViewStructure, IGenreAPI, ILanguageAPI } from '@/interfaces/filters';
-import { EMoviesListName, IMovie, IMovies } from '@/interfaces/movies';
-import { buildDiscoverQueryByFilters } from '@/services/tmdbService';
+import {
+  ICountryAPI,
+  IFiltersViewStructure,
+  IGenreAPI,
+  ILanguageAPI,
+} from '@/interfaces/filters.interface';
+import { EMoviesListName, IMovie, IMovies } from '@/interfaces/movies.interface';
+import { buildDiscoverQueryByFilters } from '@/services/tmdb.service';
 import axios from 'axios';
 
 const tmdbApi = axios.create({
@@ -33,7 +38,6 @@ export const getMovieGenres = async (): Promise<Array<IGenreAPI>> => {
 
 export const getDiscoverMovies = async (filters: IFiltersViewStructure): Promise<IMovies> => {
   const query = `/discover/movie?${buildDiscoverQueryByFilters(filters)}`;
-  // console.log(query);
   const response = await tmdbApi.get(query);
   return response.data;
 };

@@ -1,5 +1,5 @@
-import { getMoviesByListName } from '@/api/tmbd';
-import { EMoviesListName, IMovies } from '@/interfaces/movies';
+import { getMoviesByListName } from '@/api/tmbd.api';
+import { EMoviesListName, IMovies } from '@/interfaces/movies.interface';
 import { queryOptions, QueryClient } from '@tanstack/react-query';
 
 const searchDetailQuery = (name: EMoviesListName) => {

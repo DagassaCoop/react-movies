@@ -5,20 +5,20 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 // Hooks
-import { useAppDispatch } from '@/hooks/store';
+import { useAppDispatch } from '@/hooks/store.hook';
 
 // API
-import { setFilterUpdate } from '@/store/states/filtersSlice';
+import { setFilterUpdate } from '@/store/states/filters.slice';
 
 // Interfaces
-import { IFilter, IReleaseDate } from '@/interfaces/filters';
+import { IFilter, IReleaseDate } from '@/interfaces/filters.interface';
 
-interface ISearchFilterDateProps {
+interface IFilterDateProps {
   filteredData: IFilter<IReleaseDate>;
   setStateCallback: (data: IReleaseDate, isActive: boolean) => void;
 }
 
-const SearchFilterDate: React.FC<ISearchFilterDateProps> = ({ filteredData, setStateCallback }) => {
+const FilterDate: React.FC<IFilterDateProps> = ({ filteredData, setStateCallback }) => {
   const dispatch = useAppDispatch();
 
   const onChangeHandler = (next: dayjs.Dayjs) => {
@@ -59,4 +59,4 @@ const SearchFilterDate: React.FC<ISearchFilterDateProps> = ({ filteredData, setS
   );
 };
 
-export default memo(SearchFilterDate);
+export default memo(FilterDate);

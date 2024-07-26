@@ -1,25 +1,24 @@
 import { Route, createBrowserRouter, createRoutesFromElements, redirect } from 'react-router-dom';
 import { QueryClient } from '@tanstack/react-query';
 
-import RootLayout from '@/components/layouts/RootLayout.tsx';
+import RootLayout from '@/components/layouts/Root.layout.tsx';
 
 // Pages
-import HomePage from '@/components/pages/HomePage.tsx';
-import CategoriesPage from '@/components/pages/CategoriesPage.tsx';
-// import MediaPage from '@/components/pages/MediaPage.tsx';
-import MyFavoritesPage from '@/components/pages/MyFavoritesPage.tsx';
-import ErrorPage from '@/components/pages/ErrorPage.tsx';
-import SearchPage from '@/components/pages/SearchPage.tsx';
+import HomePage from '@/components/pages/Home.page.tsx';
+import CategoriesPage from '@/components/pages/Categories.page.tsx';
+import MyFavoritesPage from '@/components/pages/MyFavorites.page.tsx';
+import ErrorPage from '@/components/pages/Error.page.tsx';
+import SearchPage from '@/components/pages/Search.page.tsx';
 
 // Loaders
-import categoryLoader from './loaders/categoryLoader.ts';
-import searchLoader from './loaders/searchLoader.ts';
+import categoryLoader from './loaders/category.loader.ts';
+import searchLoader from './loaders/search.loader.ts';
 
 // Interfaces
-import { ECategoryMovieType, ECategoryTVSerieType } from '@/interfaces/categories.ts';
+import { ECategoryMovieType, ECategoryTVSerieType } from '@/interfaces/categories.interface.ts';
 
 // Services
-import { getMoviesListEnums } from '@/services/moviesService.ts';
+import { getMoviesListEnums } from '@/services/movies.service.ts';
 
 const queryClient = new QueryClient();
 
