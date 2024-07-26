@@ -6,11 +6,15 @@ import {
   IFilter,
   IFiltersViewStructure,
   IGenreAPI,
+  ILanguageAPI,
   IReleaseDate,
   IReleaseDateTypeAPI,
+  ISlider,
+  ISliderDouble,
   TFilter,
 } from '@/interfaces/filters';
 
+// TODO: Move builders to personalized function for each filter section
 export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): string => {
   let query = '';
 
@@ -35,6 +39,17 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
   if (releaseDate.releaseFrom.isActive) query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseFrom]);
   if (releaseDate.releaseTo.isActive) query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseTo]);
 
+  // Build language query
+  const language = filters[EFilterSection.language];
+  if (language.language.isActive) query += getQueryForFilterType(EFilterType.language, [language.language]);
+
+  // Build vote count query
+  const voteCount = filters[EFilterSection.voteCount];
+  if (voteCount.isActive) query += getQueryForFilterType(EFilterType.voteCount, [voteCount])
+
+  // Build vote average query
+  const voteAverage = filters[EFilterSection.voteAverage];
+  if (voteAverage.isActive) query += getQueryForFilterType(EFilterType.voteAverage, [voteAverage])
 
   // Remove last &
   if (query) query = query.slice(0, -1);
@@ -47,13 +62,26 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
 const getQueryForFilterType = (type: EFilterType, filters: TFilter[]): string => {
   switch (type) {
     case EFilterType.genre:
-      return `with_genres=${(filters as IFilter<IGenreAPI>[]).map((f) => f.data.id).join(',')}&`;
+      const filterGenre = filters as IFilter<IGenreAPI>[]
+      return `with_genres=${filterGenre.map((f) => f.data.id).join(',')}&`;
     case EFilterType.country:
-      return `with_origin_country${(filters as [IFilter<ICountryAPI>])[0].data.iso_3166_1}&`;
+      const filterCountry = filters as [IFilter<ICountryAPI>]
+      return `with_origin_country${filterCountry[0].data.iso_3166_1}&`;
     case EFilterType.releaseDate:
-      return `release_date.${EReleaseDateAPIType[(filters as [IFilter<IReleaseDate>])[0].data.api]}=${(filters as [IFilter<IReleaseDate>])[0].data.date}&`
+      const filterReleaseDate = filters as [IFilter<IReleaseDate>]
+      return `release_date.${EReleaseDateAPIType[filterReleaseDate[0].data.api]}=${filterReleaseDate[0].data.date}&`
     case EFilterType.releaseDateType:
-      return `with_release_type=${(filters as IFilter<IReleaseDateTypeAPI>[]).map((f => f.data.api)).join(',')}&`;
+      const filterReleaseDateType = filters as IFilter<IReleaseDateTypeAPI>[]
+      return `with_release_type=${filterReleaseDateType.map((f => f.data.api)).join(',')}&`;
+    case EFilterType.language: 
+      const filterLanguage = filters[0] as IFilter<ILanguageAPI>
+      return `with_original_language=${filterLanguage.data.iso_639_1}&`
+    case EFilterType.voteCount:
+      const filterVoteCount = filters[0] as IFilter<ISliderDouble>
+      return `vote_count.gte=${filterVoteCount.data.value[0]}&vote_count.lte=${filterVoteCount.data.value[1]}&` 
+    case EFilterType.voteAverage:
+      const filterVoteAverage = filters[0] as IFilter<ISlider>
+      return `vote_average.gte=${100 / 500 * filterVoteAverage.data.value / 10}&`
     default:
       return '';
   }

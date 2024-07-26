@@ -2,7 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { v4 } from 'uuid';
 
 // API
-import { getMovieGenres } from '@/api/tmbd';
+import { getLanguages, getMovieGenres } from '@/api/tmbd';
 
 // Interfaces
 import {
@@ -103,6 +103,39 @@ const initialState: IFiltersStore = {
         },
       },
     },
+    [EFilterSection.language]: {
+      language: {
+        id: v4(),
+        isActive: false,
+        section: EFilterSection.language,
+        type: EFilterType.language,
+        data: {
+          iso_639_1: 'xx',
+          english_name: 'No Language',
+          name: 'No Language',
+        },
+      }
+    },
+    [EFilterSection.voteCount]: {
+      id: v4(),
+      section: EFilterSection.voteCount,
+      type: EFilterType.voteCount,
+      isActive: false,
+      data: {
+        id: v4(),
+        value: [0, 100],
+      },
+    },
+    [EFilterSection.voteAverage]: {
+      id: v4(),
+      section: EFilterSection.voteAverage,
+      type: EFilterType.voteAverage,
+      isActive: false,
+      data: {
+        id: v4(),
+        value: 0,
+      },
+    }
   },
   isActive: false,
   filtersUpdates: {},

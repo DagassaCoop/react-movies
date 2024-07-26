@@ -102,7 +102,7 @@ const SearchFilterReleaseDate: React.FC = () => {
   return (
     <div className='search-filter search-filter_release-date'>
       <RBS.Form>
-      <h3 className='search-filter__title'>Release Dates</h3>
+        <h3 className='search-filter__title'>Release Dates</h3>
         <div className='search-filter__options'>
           {/* Filter > All Releases as MinInfo */}
           <SearchFilterCheck

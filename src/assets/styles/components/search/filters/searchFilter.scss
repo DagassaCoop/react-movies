@@ -52,7 +52,7 @@
     }
   }
 
-  &__country {
+  &__select {
     width: 100%;
     border-radius: 8px;
 
@@ -82,6 +82,11 @@
         font-size: 12px;
       }
     }
+  }
+
+  &__slider {
+    width: 90%;
+    margin-left: 5%;
   }
 
   &_release-date {

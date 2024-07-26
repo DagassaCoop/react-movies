@@ -3,6 +3,9 @@
 export enum EFilterSection {
   genre,
   releaseDate,
+  language,
+  voteCount,
+  voteAverage,
 }
 
 export enum EFilterType {
@@ -11,6 +14,9 @@ export enum EFilterType {
   country,
   releaseDateType,
   minInfo,
+  language,
+  voteCount,
+  voteAverage,
 }
 
 export enum EReleaseDateAPIType {
@@ -37,6 +43,12 @@ export interface ICountryAPI {
   native_name: string;
 }
 
+export interface ILanguageAPI {
+  iso_639_1: string
+  english_name: string
+  name: string
+}
+
 // Subtypes
 
 export interface IReleaseDate {
@@ -51,6 +63,16 @@ export interface IMinInfo {
   title: string;
 }
 
+export interface ISlider {
+  id: string
+  value: number
+}
+
+export interface ISliderDouble {
+  id: string
+  value: number[]
+}
+
 // Filter
 
 export interface IFilter<T> {
@@ -62,7 +84,7 @@ export interface IFilter<T> {
 }
 
 export type TFilter = IFilter<
-  IGenreAPI | IReleaseDateTypeAPI | IMinInfo | ICountryAPI | IReleaseDate
+  IGenreAPI | IReleaseDateTypeAPI | IMinInfo | ICountryAPI | IReleaseDate | ILanguageAPI | ISlider | ISliderDouble
 >;
 
 // Filter State
@@ -77,6 +99,11 @@ export interface IFiltersViewStructure {
     releaseFrom: IFilter<IReleaseDate>;
     releaseTo: IFilter<IReleaseDate>;
   };
+  [EFilterSection.language]: {
+    language: IFilter<ILanguageAPI>;
+  }
+  [EFilterSection.voteCount]: IFilter<ISliderDouble>
+  [EFilterSection.voteAverage]: IFilter<ISlider>
 }
 
 export interface IFiltersUpdates {

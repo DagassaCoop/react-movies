@@ -61,7 +61,7 @@ const SearchFilterCountry: React.FC<ISearchFilterCountryProps> = ({ filterData, 
   }
   
   return (
-    <RBS.Form.Select className="search-filter__country" defaultValue={filterData.isActive ? filterData.data.iso_3166_1 : undefined} onChange={onChangeHandler}>
+    <RBS.Form.Select className="search-filter__select search-filter__country" defaultValue={filterData.isActive ? filterData.data.iso_3166_1 : undefined} onChange={onChangeHandler}>
       <option>Select country</option>
       {data && data.map(country => {
         return (

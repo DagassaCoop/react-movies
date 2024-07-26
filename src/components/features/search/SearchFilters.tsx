@@ -9,6 +9,9 @@ import '@/assets/styles/components/search/searchFilters.scss';
 // Components
 import SearchFilterGenres from './filterSections/SearchFilterGenres';
 import SearchFilterReleaseDate from './filterSections/SearchFilterReleaseDate';
+import SearchFilterLanguage from './filterSections/SearchFilterLanguage';
+import SearchFilterVoteCount from './filterSections/SearchFilterVoteCount';
+import SearchFilterVoteAverage from './filterSections/SearchFilterVoteAverage';
 
 const SearchFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -25,12 +28,15 @@ const SearchFilters: React.FC = () => {
   }, [filterUpdates]);
 
   return (
-    <RBS.Accordion className='search-filters'>
+    <RBS.Accordion className='search-filters' defaultActiveKey={['0']} alwaysOpen>
       <RBS.Accordion.Item eventKey='0'>
         <RBS.AccordionHeader onClick={decoratedOnClick}>Filters</RBS.AccordionHeader>
         <RBS.AccordionBody>
           <SearchFilterReleaseDate />
           <SearchFilterGenres />
+          <SearchFilterLanguage />
+          <SearchFilterVoteCount />
+          <SearchFilterVoteAverage />
         </RBS.AccordionBody>
       </RBS.Accordion.Item>
     </RBS.Accordion>
