@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { memo } from 'react';
+
+// Assets
 import '@/assets/styles/components/search/searchResult.scss';
 
-// interfaces
+// Interfaces
 import { IMovie } from '@/interfaces/movies';
+
+// Components
 import SearchResultItem from './result/SearchResultItem';
 
 interface ISearchResultProps {
@@ -19,4 +23,4 @@ const SearchResult: React.FC<ISearchResultProps> = ({ movies }) => {
   );
 };
 
-export default SearchResult;
+export default memo(SearchResult);

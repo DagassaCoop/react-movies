@@ -1,12 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
+
+// Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
+
+// State
 import { fetchGenres } from '@/store/states/filtersSlice';
 
 // Assets
 import '@/assets/styles/components/search/filters/searchFilter.scss';
 
 // Components
-import SearchFilterButton from '../filterTypes/SearchFilterButton';
+import SearchFilterButton from '../components/SearchFilterButton';
+
+// Interfaces
 import { EFilterSection } from '@/interfaces/filters';
 
 const SearchFilterGenres: React.FC = () => {
@@ -31,4 +37,4 @@ const SearchFilterGenres: React.FC = () => {
   );
 };
 
-export default SearchFilterGenres;
+export default memo(SearchFilterGenres);

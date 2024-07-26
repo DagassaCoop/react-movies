@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useLoaderData } from 'react-router-dom';
+
+// Hooks
 import { useAppSelector } from '@/hooks/store';
 
-// interfaces
+// Interfaces
 import {
   ECategoryDefaultType,
   ECategoryMovieType,
@@ -11,7 +13,7 @@ import {
   ICategoriesLoaderOutput,
 } from '@/interfaces/categories';
 
-// components
+// Components
 import CategoriesHeader from '../features/categories/CategoriesHeader';
 import CategoriesMovies from '../features/categories/CategoriesMovies';
 

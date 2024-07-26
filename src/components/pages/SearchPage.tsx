@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, useMemo } from 'react';
 import { Button } from 'react-bootstrap';
 import { useAppSelector, useAppDispatch } from '@/hooks/store';
 import { useLoaderData } from 'react-router-dom';
@@ -51,9 +51,12 @@ const SearchPage: React.FC<ISearchResultProps> = ({ moviesListName }) => {
     },
   );
 
-  const title =
-    categoryMovies.categories.find((category) => category.api === Number(moviesListName))?.title ??
-    'N/A';
+  const title = useMemo(
+    () =>
+      categoryMovies.categories.find((category) => category.api === Number(moviesListName))
+        ?.title ?? 'N/A',
+    [categoryMovies],
+  );
 
   const handleSearchButton = () => {
     dispatch(updateFiltersViewStructure());
@@ -77,4 +80,4 @@ const SearchPage: React.FC<ISearchResultProps> = ({ moviesListName }) => {
   );
 };
 
-export default SearchPage;
+export default memo(SearchPage);

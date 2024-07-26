@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import * as RBS from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 import { setReadyStatus } from '@/store/states/filtersSlice';
@@ -7,11 +7,11 @@ import { setReadyStatus } from '@/store/states/filtersSlice';
 import '@/assets/styles/components/search/searchFilters.scss';
 
 // Components
-import SearchFilterGenres from './filterSections/SearchFilterGenres';
-import SearchFilterReleaseDate from './filterSections/SearchFilterReleaseDate';
-import SearchFilterLanguage from './filterSections/SearchFilterLanguage';
-import SearchFilterVoteCount from './filterSections/SearchFilterVoteCount';
-import SearchFilterVoteAverage from './filterSections/SearchFilterVoteAverage';
+import SearchFilterGenres from './filter/sections/SearchFilterGenres';
+import SearchFilterReleaseDate from './filter/sections/SearchFilterReleaseDate';
+import SearchFilterLanguage from './filter/sections/SearchFilterLanguage';
+import SearchFilterVoteCount from './filter/sections/SearchFilterVoteCount';
+import SearchFilterVoteAverage from './filter/sections/SearchFilterVoteAverage';
 
 const SearchFilters: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -43,4 +43,4 @@ const SearchFilters: React.FC = () => {
   );
 };
 
-export default SearchFilters;
+export default memo(SearchFilters);

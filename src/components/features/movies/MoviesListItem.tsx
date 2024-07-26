@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
+
+// Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
+
+// State
 import { addFavoriteMovie, removeFavoriteMovie } from '@/store/states/favoritesSlice';
 
 const MoviesListItem: React.FC<{ movie: any }> = ({ movie }) => {
@@ -27,4 +31,4 @@ const MoviesListItem: React.FC<{ movie: any }> = ({ movie }) => {
   );
 };
 
-export default MoviesListItem;
+export default memo(MoviesListItem);

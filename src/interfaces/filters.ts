@@ -44,9 +44,9 @@ export interface ICountryAPI {
 }
 
 export interface ILanguageAPI {
-  iso_639_1: string
-  english_name: string
-  name: string
+  iso_639_1: string;
+  english_name: string;
+  name: string;
 }
 
 // Subtypes
@@ -55,7 +55,7 @@ export interface IReleaseDate {
   id: string;
   title: string;
   date: string;
-  api: EReleaseDateAPIType
+  api: EReleaseDateAPIType;
 }
 
 export interface IMinInfo {
@@ -64,13 +64,13 @@ export interface IMinInfo {
 }
 
 export interface ISlider {
-  id: string
-  value: number
+  id: string;
+  value: number;
 }
 
 export interface ISliderDouble {
-  id: string
-  value: number[]
+  id: string;
+  value: number[];
 }
 
 // Filter
@@ -84,7 +84,14 @@ export interface IFilter<T> {
 }
 
 export type TFilter = IFilter<
-  IGenreAPI | IReleaseDateTypeAPI | IMinInfo | ICountryAPI | IReleaseDate | ILanguageAPI | ISlider | ISliderDouble
+  | IGenreAPI
+  | IReleaseDateTypeAPI
+  | IMinInfo
+  | ICountryAPI
+  | IReleaseDate
+  | ILanguageAPI
+  | ISlider
+  | ISliderDouble
 >;
 
 // Filter State
@@ -99,11 +106,9 @@ export interface IFiltersViewStructure {
     releaseFrom: IFilter<IReleaseDate>;
     releaseTo: IFilter<IReleaseDate>;
   };
-  [EFilterSection.language]: {
-    language: IFilter<ILanguageAPI>;
-  }
-  [EFilterSection.voteCount]: IFilter<ISliderDouble>
-  [EFilterSection.voteAverage]: IFilter<ISlider>
+  [EFilterSection.language]: IFilter<ILanguageAPI>;
+  [EFilterSection.voteCount]: IFilter<ISliderDouble>;
+  [EFilterSection.voteAverage]: IFilter<ISlider>;
 }
 
 export interface IFiltersUpdates {

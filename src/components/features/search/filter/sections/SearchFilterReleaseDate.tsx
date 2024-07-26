@@ -1,21 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo, useCallback } from 'react';
 import * as RBS from 'react-bootstrap';
-import { v4 } from 'uuid';
 
 // Components
-import SearchFilterCheck from '../filterTypes/SearchFilterCheck';
-import SearchFilterCountry from '../filterTypes/SearchFilterCountry';
+import SearchFilterCheck from '../components/SearchFilterCheck';
+import SearchFilterCountry from '../components/SearchFilterCountry';
+import SearchFilterDate from '../components/SearchFilterDate';
 
 // Hooks
 import { useAppDispatch, useAppSelector } from '@/hooks/store';
 
 // Interfaces
-import { EFilterSection, EFilterType, EReleaseDateAPIType, ICountryAPI, IFilter, IReleaseDate } from '@/interfaces/filters';
+import { EFilterType, EReleaseDateAPIType, ICountryAPI, IReleaseDate } from '@/interfaces/filters';
 
 // API
 import { fetchReleaseDateTypes, removeFilterUpdates } from '@/store/states/filtersSlice';
-import SearchFilterDate from '../filterTypes/SearchFilterDate';
-
 
 const SearchFilterReleaseDate: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -34,14 +32,16 @@ const SearchFilterReleaseDate: React.FC = () => {
     setReleaseDateFilters(filterReleaseDates);
   }, [filterReleaseDates]);
 
-  const allReleasesOnChangeHandler = () => {
+  const allReleasesOnChangeHandler = useCallback(() => {
     if (!releaseDateFilters.allReleases.isActive)
       dispatch(
-        removeFilterUpdates(
-          [...releaseDateFilters.releaseDateTypes
+        removeFilterUpdates([
+          ...releaseDateFilters.releaseDateTypes
             .filter((type) => type.isActive)
-            .map((type) => type.id), releaseDateFilters.allCountries.id, releaseDateFilters.country ? releaseDateFilters.country.id : ''],
-        ),
+            .map((type) => type.id),
+          releaseDateFilters.allCountries.id,
+          releaseDateFilters.country ? releaseDateFilters.country.id : '',
+        ]),
       );
     setReleaseDateFilters((prev) => {
       return {
@@ -52,11 +52,11 @@ const SearchFilterReleaseDate: React.FC = () => {
         },
       };
     });
-  }
+  }, []);
 
-  const allCountriesOnChangeHandler = () => {
+  const allCountriesOnChangeHandler = useCallback(() => {
     if (!releaseDateFilters.allCountries.isActive) {
-      dispatch(removeFilterUpdates([releaseDateFilters.country.id]))
+      dispatch(removeFilterUpdates([releaseDateFilters.country.id]));
     }
     setReleaseDateFilters((prev) => {
       return {
@@ -66,10 +66,10 @@ const SearchFilterReleaseDate: React.FC = () => {
           isActive: !prev.allCountries.isActive,
         },
       };
-    })
-  }
+    });
+  }, []);
 
-  const countryOnChangeHandler = (data: ICountryAPI, isActive: boolean) => {
+  const countryOnChangeHandler = useCallback((data: ICountryAPI, isActive: boolean) => {
     setReleaseDateFilters((prev) => {
       return {
         ...prev,
@@ -77,27 +77,29 @@ const SearchFilterReleaseDate: React.FC = () => {
           ...prev.country,
           isActive,
           data,
-        }
-      }
+        },
+      };
     });
-  }
+  }, []);
 
-  const releaseDateOnChangeHandler = (releaseDateAPIType: EReleaseDateAPIType) => (data: IReleaseDate, isActive: boolean) => {
-    const releaseDateName = releaseDateAPIType === EReleaseDateAPIType.gte ? 'releaseFrom' : 'releaseTo';
-    
-    setReleaseDateFilters(prev => {
-      return {
-        ...prev,
-        [releaseDateName]: {
-          ...prev[releaseDateName],
-          isActive,
-          data,
-        }
-      }
-    })
-  }
+  const releaseDateOnChangeHandler = useCallback(
+    (releaseDateAPIType: EReleaseDateAPIType) => (data: IReleaseDate, isActive: boolean) => {
+      const releaseDateName =
+        releaseDateAPIType === EReleaseDateAPIType.gte ? 'releaseFrom' : 'releaseTo';
 
-
+      setReleaseDateFilters((prev) => {
+        return {
+          ...prev,
+          [releaseDateName]: {
+            ...prev[releaseDateName],
+            isActive,
+            data,
+          },
+        };
+      });
+    },
+    [],
+  );
 
   return (
     <div className='search-filter search-filter_release-date'>
@@ -119,7 +121,10 @@ const SearchFilterReleaseDate: React.FC = () => {
               {/* Filter: Country as ICountryAPI */}
               {!releaseDateFilters.allCountries.isActive && (
                 <div className='search-filter_release-date__country'>
-                  <SearchFilterCountry filterData={releaseDateFilters.country} setStateCallback={countryOnChangeHandler}/>
+                  <SearchFilterCountry
+                    filterData={releaseDateFilters.country}
+                    setStateCallback={countryOnChangeHandler}
+                  />
                 </div>
               )}
               {/* Filters: ReleaseDataTypes as IReleaseDataTypeAPI[] */}
@@ -155,15 +160,21 @@ const SearchFilterReleaseDate: React.FC = () => {
         </div>
         {/* Filter: Release From as IReleaseDate */}
         <div className='search-filter_release-date__date'>
-          <SearchFilterDate filteredData={releaseDateFilters.releaseFrom} setStateCallback={releaseDateOnChangeHandler(EReleaseDateAPIType.gte)}/>
+          <SearchFilterDate
+            filteredData={releaseDateFilters.releaseFrom}
+            setStateCallback={releaseDateOnChangeHandler(EReleaseDateAPIType.gte)}
+          />
         </div>
         {/* Filter: Release To as IReleaseDate */}
         <div className='search-filter_release-date__date'>
-          <SearchFilterDate filteredData={releaseDateFilters.releaseTo} setStateCallback={() => {}}/>
+          <SearchFilterDate
+            filteredData={releaseDateFilters.releaseTo}
+            setStateCallback={() => {}}
+          />
         </div>
       </RBS.Form>
     </div>
   );
 };
 
-export default SearchFilterReleaseDate;
+export default memo(SearchFilterReleaseDate);

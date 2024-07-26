@@ -25,7 +25,7 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
   }
 
   // Build release date query
-  const releaseDate = filters[EFilterSection.releaseDate]
+  const releaseDate = filters[EFilterSection.releaseDate];
   if (!releaseDate.allReleases.isActive) {
     if (!releaseDate.allCountries.isActive && releaseDate.country) {
       query += getQueryForFilterType(EFilterType.country, [releaseDate.country]);
@@ -36,20 +36,22 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
       query += getQueryForFilterType(EFilterType.releaseDateType, releaseDateTypes);
     }
   }
-  if (releaseDate.releaseFrom.isActive) query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseFrom]);
-  if (releaseDate.releaseTo.isActive) query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseTo]);
+  if (releaseDate.releaseFrom.isActive)
+    query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseFrom]);
+  if (releaseDate.releaseTo.isActive)
+    query += getQueryForFilterType(EFilterType.releaseDate, [releaseDate.releaseTo]);
 
   // Build language query
   const language = filters[EFilterSection.language];
-  if (language.language.isActive) query += getQueryForFilterType(EFilterType.language, [language.language]);
+  if (language.isActive) query += getQueryForFilterType(EFilterType.language, [language]);
 
   // Build vote count query
   const voteCount = filters[EFilterSection.voteCount];
-  if (voteCount.isActive) query += getQueryForFilterType(EFilterType.voteCount, [voteCount])
+  if (voteCount.isActive) query += getQueryForFilterType(EFilterType.voteCount, [voteCount]);
 
   // Build vote average query
   const voteAverage = filters[EFilterSection.voteAverage];
-  if (voteAverage.isActive) query += getQueryForFilterType(EFilterType.voteAverage, [voteAverage])
+  if (voteAverage.isActive) query += getQueryForFilterType(EFilterType.voteAverage, [voteAverage]);
 
   // Remove last &
   if (query) query = query.slice(0, -1);
@@ -62,26 +64,28 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
 const getQueryForFilterType = (type: EFilterType, filters: TFilter[]): string => {
   switch (type) {
     case EFilterType.genre:
-      const filterGenre = filters as IFilter<IGenreAPI>[]
+      const filterGenre = filters as IFilter<IGenreAPI>[];
       return `with_genres=${filterGenre.map((f) => f.data.id).join(',')}&`;
     case EFilterType.country:
-      const filterCountry = filters as [IFilter<ICountryAPI>]
+      const filterCountry = filters as [IFilter<ICountryAPI>];
       return `with_origin_country${filterCountry[0].data.iso_3166_1}&`;
     case EFilterType.releaseDate:
-      const filterReleaseDate = filters as [IFilter<IReleaseDate>]
-      return `release_date.${EReleaseDateAPIType[filterReleaseDate[0].data.api]}=${filterReleaseDate[0].data.date}&`
+      const filterReleaseDate = filters as [IFilter<IReleaseDate>];
+      return `release_date.${EReleaseDateAPIType[filterReleaseDate[0].data.api]}=${
+        filterReleaseDate[0].data.date
+      }&`;
     case EFilterType.releaseDateType:
-      const filterReleaseDateType = filters as IFilter<IReleaseDateTypeAPI>[]
-      return `with_release_type=${filterReleaseDateType.map((f => f.data.api)).join(',')}&`;
-    case EFilterType.language: 
-      const filterLanguage = filters[0] as IFilter<ILanguageAPI>
-      return `with_original_language=${filterLanguage.data.iso_639_1}&`
+      const filterReleaseDateType = filters as IFilter<IReleaseDateTypeAPI>[];
+      return `with_release_type=${filterReleaseDateType.map((f) => f.data.api).join(',')}&`;
+    case EFilterType.language:
+      const filterLanguage = filters[0] as IFilter<ILanguageAPI>;
+      return `with_original_language=${filterLanguage.data.iso_639_1}&`;
     case EFilterType.voteCount:
-      const filterVoteCount = filters[0] as IFilter<ISliderDouble>
-      return `vote_count.gte=${filterVoteCount.data.value[0]}&vote_count.lte=${filterVoteCount.data.value[1]}&` 
+      const filterVoteCount = filters[0] as IFilter<ISliderDouble>;
+      return `vote_count.gte=${filterVoteCount.data.value[0]}&vote_count.lte=${filterVoteCount.data.value[1]}&`;
     case EFilterType.voteAverage:
-      const filterVoteAverage = filters[0] as IFilter<ISlider>
-      return `vote_average.gte=${100 / 500 * filterVoteAverage.data.value / 10}&`
+      const filterVoteAverage = filters[0] as IFilter<ISlider>;
+      return `vote_average.gte=${((100 / 500) * filterVoteAverage.data.value) / 10}&`;
     default:
       return '';
   }

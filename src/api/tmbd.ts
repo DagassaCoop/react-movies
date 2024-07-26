@@ -43,9 +43,9 @@ export const getDiscoverMovies = async (filters: IFiltersViewStructure): Promise
 export const getCountries = async (): Promise<ICountryAPI[]> => {
   const response = await tmdbApi.get('configuration/countries');
   return response.data;
-}
+};
 
 export const getLanguages = async (): Promise<ILanguageAPI[]> => {
   const response = await tmdbApi.get('configuration/languages');
   return response.data;
-}
+};

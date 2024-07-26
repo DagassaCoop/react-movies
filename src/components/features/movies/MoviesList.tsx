@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 
+// Interfaces
 import { IMovie } from '@/interfaces/movies';
 
+// Components
 import MoviesListItem from './MoviesListItem';
 
 interface IMoviesListProps {
@@ -18,4 +20,4 @@ const MoviesList: React.FC<IMoviesListProps> = ({ movies }) => {
   );
 };
 
-export default MoviesList;
+export default memo(MoviesList);

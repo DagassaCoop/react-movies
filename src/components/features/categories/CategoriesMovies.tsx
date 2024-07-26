@@ -1,8 +1,9 @@
 import React from 'react';
 import * as RBS from 'react-bootstrap';
-import categoryMovies from '@/assets/config/categoryMovies.json';
 import { Link } from 'react-router-dom';
 
+// Assets
+import categoryMovies from '@/assets/config/categoryMovies.json';
 import '@/assets/styles/components/categories/categoriesList.scss';
 
 const CategoriesMovies: React.FC = () => {

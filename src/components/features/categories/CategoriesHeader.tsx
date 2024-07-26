@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as RBS from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { v4 } from 'uuid';
@@ -24,4 +24,4 @@ const CategoriesHeader: React.FC<ICategoriesHeaderProps> = ({ categories }) => {
   );
 };
 
-export default CategoriesHeader;
+export default memo(CategoriesHeader);

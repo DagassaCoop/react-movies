@@ -1,5 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
+
+// Hooks
 import { useAppDispatch } from '@/hooks/store';
+
+// State
 import { setFilterUpdate } from '@/store/states/filtersSlice';
 
 // Interfaces
@@ -35,4 +39,4 @@ const SearchFilterButton: React.FC<ISearchFilterButtonProps> = ({ filterData }) 
   );
 };
 
-export default SearchFilterButton;
+export default memo(SearchFilterButton);

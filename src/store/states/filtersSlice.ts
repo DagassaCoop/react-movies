@@ -87,7 +87,7 @@ const initialState: IFiltersStore = {
           id: v4(),
           title: 'from',
           date: '',
-          api: 0
+          api: 0,
         },
       },
       releaseTo: {
@@ -99,22 +99,20 @@ const initialState: IFiltersStore = {
           id: v4(),
           title: 'to',
           date: '',
-          api: 1
+          api: 1,
         },
       },
     },
     [EFilterSection.language]: {
-      language: {
-        id: v4(),
-        isActive: false,
-        section: EFilterSection.language,
-        type: EFilterType.language,
-        data: {
-          iso_639_1: 'xx',
-          english_name: 'No Language',
-          name: 'No Language',
-        },
-      }
+      id: v4(),
+      isActive: false,
+      section: EFilterSection.language,
+      type: EFilterType.language,
+      data: {
+        iso_639_1: 'xx',
+        english_name: 'No Language',
+        name: 'No Language',
+      },
     },
     [EFilterSection.voteCount]: {
       id: v4(),
@@ -135,7 +133,7 @@ const initialState: IFiltersStore = {
         id: v4(),
         value: 0,
       },
-    }
+    },
   },
   isActive: false,
   filtersUpdates: {},

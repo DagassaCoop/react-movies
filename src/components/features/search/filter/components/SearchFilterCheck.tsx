@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, memo } from 'react';
 import * as RBS from 'react-bootstrap';
 
 // Hooks
@@ -41,9 +41,11 @@ const SearchFilterCheck: React.FC<ISearchFilterCheckProps> = ({ filterData, setS
         onChange={onChangeHandler}
         className='search-filter__check-input'
       />
-      <RBS.Form.Check.Label className='search-filter__check-label'>{filterData.data.title}</RBS.Form.Check.Label>
+      <RBS.Form.Check.Label className='search-filter__check-label'>
+        {filterData.data.title}
+      </RBS.Form.Check.Label>
     </RBS.Form.Check>
   );
 };
 
-export default SearchFilterCheck;
+export default memo(SearchFilterCheck);
