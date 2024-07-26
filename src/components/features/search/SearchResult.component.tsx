@@ -7,7 +7,7 @@ import '@/assets/styles/components/search/searchResult.scss';
 import { IMovie } from '@/interfaces/movies.interface';
 
 // Components
-import SearchResultItem from './result/SearchResultItem';
+import ResultItem from './result/ResultItem.component';
 
 interface ISearchResultProps {
   movies: IMovie[];
@@ -17,7 +17,7 @@ const SearchResult: React.FC<ISearchResultProps> = ({ movies }) => {
   return (
     <div className='search-result'>
       {movies.map((movie) => {
-        return <SearchResultItem key={movie.id} movie={movie} />;
+        return <ResultItem key={movie.id} movie={movie} />;
       })}
     </div>
   );

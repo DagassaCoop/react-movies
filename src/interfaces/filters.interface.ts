@@ -6,6 +6,7 @@ export enum EFilterSection {
   language,
   voteCount,
   voteAverage,
+  runtime,
 }
 
 export enum EFilterType {
@@ -17,6 +18,7 @@ export enum EFilterType {
   language,
   voteCount,
   voteAverage,
+  runtime,
 }
 
 export enum EReleaseDateAPIType {
@@ -109,6 +111,7 @@ export interface IFiltersViewStructure {
   [EFilterSection.language]: IFilter<ILanguageAPI>;
   [EFilterSection.voteCount]: IFilter<ISliderDouble>;
   [EFilterSection.voteAverage]: IFilter<ISlider>;
+  [EFilterSection.runtime]: IFilter<ISliderDouble>;
 }
 
 export interface IFiltersUpdates {

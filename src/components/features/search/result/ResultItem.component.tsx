@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
-import '@/assets/styles/components/search/searchResultItem.scss';
 import * as RBS from 'react-bootstrap';
 import { ThreeDots, ListUl, HeartFill, BookmarkFill, StarFill } from 'react-bootstrap-icons';
 import { LinkContainer } from 'react-router-bootstrap';
+
+// Assets
+import '@/assets/styles/components/search/searchResultItem.scss';
 
 // Hooks
 import useOutsideCallback from '@/hooks/useOutsideCallback.hook';
@@ -10,11 +12,11 @@ import useOutsideCallback from '@/hooks/useOutsideCallback.hook';
 // Interfaces
 import { IMovie } from '@/interfaces/movies.interface';
 
-interface ISearchResultItemProps {
+interface IResultItemProps {
   movie: IMovie;
 }
 
-const SearchResultItem: React.FC<ISearchResultItemProps> = ({ movie }) => {
+const ResultItem: React.FC<IResultItemProps> = ({ movie }) => {
   const wrapperRef = useRef(null);
   useOutsideCallback(wrapperRef, () => resetActions());
   const [blurOn, setBlurOn] = useState<boolean>(false);
@@ -147,4 +149,4 @@ const RateCircle: React.FC<IRateCircleProps> = ({ rate }) => {
   );
 };
 
-export default SearchResultItem;
+export default ResultItem;

@@ -134,6 +134,16 @@ const initialState: IFiltersStore = {
         value: 0,
       },
     },
+    [EFilterSection.runtime]: {
+      id: v4(),
+      section: EFilterSection.runtime,
+      type: EFilterType.runtime,
+      isActive: false,
+      data: {
+        id: v4(),
+        value: [0, 100],
+      }
+    }
   },
   isActive: false,
   filtersUpdates: {},

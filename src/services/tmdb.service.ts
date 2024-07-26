@@ -53,6 +53,10 @@ export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): str
   const voteAverage = filters[EFilterSection.voteAverage];
   if (voteAverage.isActive) query += getQueryForFilterType(EFilterType.voteAverage, [voteAverage]);
 
+  // Build runtime query
+  const runtime = filters[EFilterSection.runtime];
+  if (runtime.isActive) query += getQueryForFilterType(EFilterType.runtime, [runtime]);
+
   // Remove last &
   if (query) query = query.slice(0, -1);
 
@@ -86,6 +90,9 @@ const getQueryForFilterType = (type: EFilterType, filters: TFilter[]): string =>
     case EFilterType.voteAverage:
       const filterVoteAverage = filters[0] as IFilter<ISlider>;
       return `vote_average.gte=${((100 / 500) * filterVoteAverage.data.value) / 10}&`;
+    case EFilterType.runtime:
+      const filterRuntime = filters[0] as IFilter<ISliderDouble>;
+      return `with_runtime.gte=${filterRuntime.data.value[0]}&with_runtime.lte=${filterRuntime.data.value[1]}&`;
     default:
       return '';
   }
