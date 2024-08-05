@@ -1,0 +1,14 @@
+.discover-filters {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .1);
+  margin-bottom: 20px;
+
+  &:first-of-type,:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .accordion-body {
+    padding: 0;
+  }
+}

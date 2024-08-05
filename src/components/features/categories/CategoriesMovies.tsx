@@ -3,7 +3,7 @@ import * as RBS from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 // Assets
-import categoryMovies from '@/assets/config/categoryMovies.json';
+import categoryMovies from '@/assets/data/categoryMovies.json';
 import '@/assets/styles/components/categories/categoriesList.scss';
 
 const CategoriesMovies: React.FC = () => {
@@ -11,7 +11,7 @@ const CategoriesMovies: React.FC = () => {
     <div className='categories-list categories-list_movies'>
       {categoryMovies.categories.map((listItem) => {
         return (
-          <Link className='categories-list__item' key={listItem.id} to={'/search/' + listItem.api}>
+          <Link className='categories-list__item' key={listItem.id} to={'/discover/' + listItem.api}>
             <div className='categories-list__item-logo'>
               <RBS.Image />
             </div>

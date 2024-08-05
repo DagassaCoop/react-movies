@@ -4,6 +4,7 @@ import {
   IGenreAPI,
   ILanguageAPI,
 } from '@/interfaces/filters.interface';
+import { IImagesResponse } from '@/interfaces/images.interface';
 import { EMoviesListName, IMovie, IMovies } from '@/interfaces/movies.interface';
 import { buildDiscoverQueryByFilters } from '@/services/tmdb.service';
 import axios from 'axios';
@@ -26,6 +27,11 @@ export const getMovieById = async (id: string): Promise<IMovie> => {
   const response = await tmdbApi.get(`/movie/${id}`);
   return response.data;
 };
+
+export const getMoviesImagesById = async (id: string): Promise<IImagesResponse> => {
+  const response = await tmdbApi.get(`movie/${id}/images`)
+  return response.data;
+}
 
 // GENRES API
 

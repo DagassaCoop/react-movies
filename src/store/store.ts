@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import favoritesReducer from '@/store/states/favorites.slice';
-import categoriesReducer from '@/store/states/categories.slice';
-import filtersReducer from '@/store/states/filters.slice';
+import favoritesReducer from '@/store/slices/favorites.slice';
+import categoriesReducer from '@/store/slices/categories.slice';
+import filtersReducer from '@/store/slices/filters.slice';
 
-const store = configureStore({
+export const createStore = () => configureStore({
   reducer: {
     favorites: favoritesReducer,
     categories: categoriesReducer,
@@ -12,8 +12,8 @@ const store = configureStore({
   },
 });
 
+export const store = createStore();
+
 export type AppStore = typeof store;
 export type RootState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
-
-export default store;

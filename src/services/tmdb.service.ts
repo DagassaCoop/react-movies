@@ -1,3 +1,7 @@
+// API
+import { getMoviesByListName, getMoviesImagesById } from '@/api/tmbd.api';
+
+// Interfaces
 import {
   EFilterSection,
   EFilterType,
@@ -13,6 +17,7 @@ import {
   ISliderDouble,
   TFilter,
 } from '@/interfaces/filters.interface';
+import { EMoviesListName } from '@/interfaces/movies.interface';
 
 // TODO: Move builders to personalized function for each filter section
 export const buildDiscoverQueryByFilters = (filters: IFiltersViewStructure): string => {
@@ -97,3 +102,10 @@ const getQueryForFilterType = (type: EFilterType, filters: TFilter[]): string =>
       return '';
   }
 };
+
+export const getRandomBackgroundImage = async (): Promise<string> => {
+  const popularMovies = await getMoviesByListName(EMoviesListName.popular)
+  const movieImagesBackdrops = (await getMoviesImagesById(popularMovies.results[Math.floor(Math.random() * popularMovies.results.length)].id.toString())).backdrops
+  
+  return movieImagesBackdrops[movieImagesBackdrops.findIndex((image) => image.width === Math.max(...movieImagesBackdrops.map((image) => image.width)))].file_path
+}
